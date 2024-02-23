@@ -5,6 +5,7 @@
 package hectorrivera_lab6p2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +30,14 @@ public class fulbo extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog_CrearJugadores = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField_jugadores_name = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jSpinner_jugadores_edad = new javax.swing.JSpinner();
+        jComboBox_Jugadores_posicion = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
         jDialog_CrearEquipo = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -58,15 +67,77 @@ public class fulbo extends javax.swing.JFrame {
 
         jDialog_CrearJugadores.setResizable(false);
 
+        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Crear jugador");
+
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Nombre");
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("edad");
+
+        jComboBox_Jugadores_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("posicion");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(74, 74, 74))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField_jugadores_name)
+                            .addComponent(jSpinner_jugadores_edad)
+                            .addComponent(jComboBox_Jugadores_posicion, 0, 130, Short.MAX_VALUE))))
+                .addGap(83, 83, 83))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_jugadores_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jSpinner_jugadores_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_Jugadores_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(126, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jDialog_CrearJugadoresLayout = new javax.swing.GroupLayout(jDialog_CrearJugadores.getContentPane());
         jDialog_CrearJugadores.getContentPane().setLayout(jDialog_CrearJugadoresLayout);
         jDialog_CrearJugadoresLayout.setHorizontalGroup(
             jDialog_CrearJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDialog_CrearJugadoresLayout.setVerticalGroup(
             jDialog_CrearJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jDialog_CrearEquipo.setResizable(false);
@@ -331,7 +402,13 @@ public class fulbo extends javax.swing.JFrame {
 
     private void jButton_CrearEquipo_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearEquipo_addMouseClicked
         // TODO add your handling code here:
-        Equipos.add(new Equipo(pais, nombre, estadio, cuidad))
+        Equipos.add(new Equipo(jTextField_crearEquipo_pais.getText(), jTextField_crearequipo_nombre.getText(), jTextField_crearequipo_estadio.getText(), jTextField_crearEquipo_Cuidad.getText()));
+        JOptionPane.showMessageDialog(jDialog_CrearEquipo, "se creo el jugador");
+        jTextField_crearEquipo_Cuidad.setText("");
+        jTextField_crearEquipo_pais.setText("");
+        jTextField_crearequipo_estadio.setText("");
+        jTextField_crearequipo_nombre.setText("");
+        
     }//GEN-LAST:event_jButton_CrearEquipo_addMouseClicked
 
     /**
@@ -376,6 +453,7 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JButton jButton_crearEquipo;
     private javax.swing.JButton jButton_crearJugador;
     private javax.swing.JButton jButton_transferencia;
+    private javax.swing.JComboBox<String> jComboBox_Jugadores_posicion;
     private javax.swing.JDialog jDialog_CrearEquipo;
     private javax.swing.JDialog jDialog_CrearJugadores;
     private javax.swing.JDialog jDialog_Transferencia;
@@ -384,6 +462,10 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar_principal;
     private javax.swing.JMenuItem jMenuItem_Transferencia;
     private javax.swing.JMenuItem jMenuItem_crearEquipo;
@@ -391,11 +473,14 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_Opciones;
     private javax.swing.JMenu jMenu_ayuda;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_principal;
+    private javax.swing.JSpinner jSpinner_jugadores_edad;
     private javax.swing.JTextField jTextField_crearEquipo_Cuidad;
     private javax.swing.JTextField jTextField_crearEquipo_pais;
     private javax.swing.JTextField jTextField_crearequipo_estadio;
     private javax.swing.JTextField jTextField_crearequipo_nombre;
+    private javax.swing.JTextField jTextField_jugadores_name;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
     // End of variables declaration//GEN-END:variables

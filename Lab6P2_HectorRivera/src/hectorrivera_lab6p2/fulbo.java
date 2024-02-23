@@ -5,6 +5,7 @@
 package hectorrivera_lab6p2;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,7 @@ public class fulbo extends javax.swing.JFrame {
         jSpinner_jugadores_edad = new javax.swing.JSpinner();
         jComboBox_Jugadores_posicion = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
+        jButton_jugadores_add = new javax.swing.JButton();
         jDialog_CrearEquipo = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -51,6 +53,14 @@ public class fulbo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton_CrearEquipo_add = new javax.swing.JButton();
         jDialog_Transferencia = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree_transfer_equipos = new javax.swing.JTree();
+        jButton_transfer = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPanel_principal = new javax.swing.JPanel();
         Barcita = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
@@ -80,10 +90,19 @@ public class fulbo extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("edad");
 
-        jComboBox_Jugadores_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jSpinner_jugadores_edad.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+
+        jComboBox_Jugadores_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "Mediocampista", "Delantero" }));
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("posicion");
+
+        jButton_jugadores_add.setText("add");
+        jButton_jugadores_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_jugadores_addMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -92,7 +111,7 @@ public class fulbo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(86, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -106,7 +125,8 @@ public class fulbo extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField_jugadores_name)
                             .addComponent(jSpinner_jugadores_edad)
-                            .addComponent(jComboBox_Jugadores_posicion, 0, 130, Short.MAX_VALUE))))
+                            .addComponent(jComboBox_Jugadores_posicion, 0, 130, Short.MAX_VALUE)))
+                    .addComponent(jButton_jugadores_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(83, 83, 83))
         );
         jPanel2Layout.setVerticalGroup(
@@ -126,7 +146,9 @@ public class fulbo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox_Jugadores_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_jugadores_add)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog_CrearJugadoresLayout = new javax.swing.GroupLayout(jDialog_CrearJugadores.getContentPane());
@@ -192,9 +214,9 @@ public class fulbo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_crearequipo_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField_crearEquipo_pais, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField_crearequipo_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                    .addComponent(jTextField_crearEquipo_pais))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
@@ -232,15 +254,75 @@ public class fulbo extends javax.swing.JFrame {
 
         jDialog_Transferencia.setResizable(false);
 
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+
+        jTree_transfer_equipos.setBackground(new java.awt.Color(255, 255, 255));
+        jTree_transfer_equipos.setForeground(new java.awt.Color(0, 0, 0));
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("equipos");
+        jTree_transfer_equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree_transfer_equipos);
+
+        jButton_transfer.setText("------>");
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Transferir");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel11.setText("Transferencia");
+
+        jList1.setBackground(new java.awt.Color(255, 255, 255));
+        jList1.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jList1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_transfer)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel10)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(84, 84, 84)
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_transfer)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
+        );
+
         javax.swing.GroupLayout jDialog_TransferenciaLayout = new javax.swing.GroupLayout(jDialog_Transferencia.getContentPane());
         jDialog_Transferencia.getContentPane().setLayout(jDialog_TransferenciaLayout);
         jDialog_TransferenciaLayout.setHorizontalGroup(
             jDialog_TransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDialog_TransferenciaLayout.setVerticalGroup(
             jDialog_TransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -403,13 +485,28 @@ public class fulbo extends javax.swing.JFrame {
     private void jButton_CrearEquipo_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearEquipo_addMouseClicked
         // TODO add your handling code here:
         Equipos.add(new Equipo(jTextField_crearEquipo_pais.getText(), jTextField_crearequipo_nombre.getText(), jTextField_crearequipo_estadio.getText(), jTextField_crearEquipo_Cuidad.getText()));
-        JOptionPane.showMessageDialog(jDialog_CrearEquipo, "se creo el jugador");
+        JOptionPane.showMessageDialog(jDialog_CrearEquipo, "se creo el equipo");
         jTextField_crearEquipo_Cuidad.setText("");
         jTextField_crearEquipo_pais.setText("");
         jTextField_crearequipo_estadio.setText("");
         jTextField_crearequipo_nombre.setText("");
         
+        
+        
     }//GEN-LAST:event_jButton_CrearEquipo_addMouseClicked
+
+    private void jButton_jugadores_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_jugadores_addMouseClicked
+        // TODO add your handling code here:
+        Jugadores.add(new Jugador(jTextField_jugadores_name.getText(), jComboBox_Jugadores_posicion.getSelectedItem().toString(),(Integer)jSpinner_jugadores_edad.getValue()));
+        JOptionPane.showMessageDialog(jDialog_CrearJugadores, "se creo el jugador");
+        jTextField_jugadores_name.setText("");
+        
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        model.removeAllElements();
+        model.addAll(Jugadores);
+        jList1.setModel(model);
+        
+    }//GEN-LAST:event_jButton_jugadores_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -452,12 +549,16 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JButton jButton_CrearEquipo_add;
     private javax.swing.JButton jButton_crearEquipo;
     private javax.swing.JButton jButton_crearJugador;
+    private javax.swing.JButton jButton_jugadores_add;
+    private javax.swing.JButton jButton_transfer;
     private javax.swing.JButton jButton_transferencia;
     private javax.swing.JComboBox<String> jComboBox_Jugadores_posicion;
     private javax.swing.JDialog jDialog_CrearEquipo;
     private javax.swing.JDialog jDialog_CrearJugadores;
     private javax.swing.JDialog jDialog_Transferencia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -466,6 +567,7 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar_principal;
     private javax.swing.JMenuItem jMenuItem_Transferencia;
     private javax.swing.JMenuItem jMenuItem_crearEquipo;
@@ -474,7 +576,10 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_ayuda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_principal;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner_jugadores_edad;
     private javax.swing.JTextField jTextField_crearEquipo_Cuidad;
     private javax.swing.JTextField jTextField_crearEquipo_pais;
@@ -483,9 +588,10 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_jugadores_name;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
+    private javax.swing.JTree jTree_transfer_equipos;
     // End of variables declaration//GEN-END:variables
     ArrayList<Jugador> Jugadores = new ArrayList();
     ArrayList<Equipo> Equipos = new ArrayList();
-    
+
     
 }

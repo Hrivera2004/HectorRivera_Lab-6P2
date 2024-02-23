@@ -4,6 +4,7 @@
  */
 package hectorrivera_lab6p2;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -61,6 +62,9 @@ public class fulbo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jPopupMenu_transferencia = new javax.swing.JPopupMenu();
+        jMenuItem_modificar = new javax.swing.JMenuItem();
+        jMenuItem_Eliminar = new javax.swing.JMenuItem();
         jPanel_principal = new javax.swing.JPanel();
         Barcita = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
@@ -273,6 +277,11 @@ public class fulbo extends javax.swing.JFrame {
 
         jList1.setBackground(new java.awt.Color(255, 255, 255));
         jList1.setModel(new DefaultListModel());
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -324,6 +333,18 @@ public class fulbo extends javax.swing.JFrame {
             jDialog_TransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jMenuItem_modificar.setText("modificar");
+        jPopupMenu_transferencia.add(jMenuItem_modificar);
+
+        jMenuItem_Eliminar.setText("Eliminar");
+        jMenuItem_Eliminar.setToolTipText("");
+        jMenuItem_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_EliminarActionPerformed(evt);
+            }
+        });
+        jPopupMenu_transferencia.add(jMenuItem_Eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -508,6 +529,24 @@ public class fulbo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton_jugadores_addMouseClicked
 
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (jList1.getSelectedIndex()!= -1) {
+                jPopupMenu_transferencia.show(jList1, evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jMenuItem_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EliminarActionPerformed
+        // TODO add your handling code here:
+        Jugadores.remove(jList1.getSelectedIndex());
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        model.removeAllElements();
+        model.addAll(Jugadores);
+        jList1.setModel(model);
+    }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -569,15 +608,18 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar_principal;
+    private javax.swing.JMenuItem jMenuItem_Eliminar;
     private javax.swing.JMenuItem jMenuItem_Transferencia;
     private javax.swing.JMenuItem jMenuItem_crearEquipo;
     private javax.swing.JMenuItem jMenuItem_crearJugador;
+    private javax.swing.JMenuItem jMenuItem_modificar;
     private javax.swing.JMenu jMenu_Opciones;
     private javax.swing.JMenu jMenu_ayuda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_principal;
+    private javax.swing.JPopupMenu jPopupMenu_transferencia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner_jugadores_edad;
@@ -592,6 +634,6 @@ public class fulbo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Jugador> Jugadores = new ArrayList();
     ArrayList<Equipo> Equipos = new ArrayList();
-
+    
     
 }

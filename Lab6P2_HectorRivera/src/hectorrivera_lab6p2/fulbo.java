@@ -269,6 +269,11 @@ public class fulbo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTree_transfer_equipos);
 
         jButton_transfer.setText("------>");
+        jButton_transfer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_transferMouseClicked(evt);
+            }
+        });
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -508,6 +513,7 @@ public class fulbo extends javax.swing.JFrame {
     private void jButton_CrearEquipo_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearEquipo_addMouseClicked
         // TODO add your handling code here:
         Equipos.add(new Equipo(jTextField_crearEquipo_pais.getText(), jTextField_crearequipo_nombre.getText(), jTextField_crearequipo_estadio.getText(), jTextField_crearEquipo_Cuidad.getText()));
+        Equipo x = new Equipo(jTextField_crearEquipo_pais.getText(), jTextField_crearequipo_nombre.getText(), jTextField_crearequipo_estadio.getText(), jTextField_crearEquipo_Cuidad.getText());
         JOptionPane.showMessageDialog(jDialog_CrearEquipo, "se creo el equipo");
         jTextField_crearEquipo_Cuidad.setText("");
         jTextField_crearEquipo_pais.setText("");
@@ -521,18 +527,16 @@ public class fulbo extends javax.swing.JFrame {
         boolean found = false;
         for (int i = 0; i < raiz.getChildCount(); i++) {
             if (team.getPais().equals(raiz.getChildAt(i).toString())) {
-                if (rootPaneCheckingEnabled) {
-                    DefaultMutableTreeNode newTeam = new DefaultMutableTreeNode(team);
+                
+                    DefaultMutableTreeNode newTeam = new DefaultMutableTreeNode(x);
                     ((DefaultMutableTreeNode)raiz.getChildAt(i)).add(newTeam);
                     found = true;
-                }
-                
             }
         }
         
         if (found==false) {
-            DefaultMutableTreeNode newTeam = new DefaultMutableTreeNode(team);
-            DefaultMutableTreeNode newpais = new DefaultMutableTreeNode(team.getPais());
+            DefaultMutableTreeNode newTeam = new DefaultMutableTreeNode(x);
+            DefaultMutableTreeNode newpais = new DefaultMutableTreeNode(x.getPais());
             newpais.add(newTeam);
             raiz.add(newpais);
         }
@@ -549,7 +553,6 @@ public class fulbo extends javax.swing.JFrame {
         model.removeAllElements();
         model.addAll(Jugadores);
         jList1.setModel(model);
-        
     }//GEN-LAST:event_jButton_jugadores_addMouseClicked
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
@@ -570,6 +573,47 @@ public class fulbo extends javax.swing.JFrame {
         jList1.setModel(model);
         
     }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
+
+    private void jButton_transferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_transferMouseClicked
+        // TODO add your handling code here:
+//        DefaultTreeModel count = (DefaultTreeModel) jTree_transfer_equipos.getModel();
+//        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)count.getRoot();
+//        int cont= 0;
+//        
+//        while(raiz.getChildCount() > cont){
+//            raiz.getChildAt(cont);
+//            while(){
+//                
+//            }
+//            cont++;
+//        }
+        DefaultMutableTreeNode nodoselecionado =  new DefaultMutableTreeNode(jTree_transfer_equipos.getSelectionPath().getLastPathComponent());
+        if ( nodoselecionado.getUserObject() instanceof Equipo ) {
+            int selectedlist = jList1.getSelectedIndex();
+            DefaultTreeModel model = (DefaultTreeModel) jTree_transfer_equipos.getModel();
+            
+        
+            DefaultMutableTreeNode jugador = new DefaultMutableTreeNode(Jugadores.get(selectedlist).getName());
+            boolean found = false;
+        
+            for (int i = 0; i < ((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent()).getChildCount(); i++) {
+                if(Jugadores.get(selectedlist).getPosicion().equals(((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent()).getChildAt(i).toString()) ){
+                    ((DefaultMutableTreeNode)((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent()).getChildAt(i)).add(jugador);
+                    found = true;
+                }
+            }
+            if (found==false) {
+                DefaultMutableTreeNode posicion = new DefaultMutableTreeNode(Jugadores.get(selectedlist).getPosicion());
+                posicion.add(jugador);
+                ((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent()).add(posicion);
+            }
+            model.reload();
+            
+        }else{
+            System.out.println("_---------------");
+        }
+        
+    }//GEN-LAST:event_jButton_transferMouseClicked
 
     /**
      * @param args the command line arguments
@@ -656,8 +700,8 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar4;
     private javax.swing.JTree jTree_transfer_equipos;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Jugador> Jugadores = new ArrayList();
-    ArrayList<Equipo> Equipos = new ArrayList();
+    public ArrayList<Jugador> Jugadores = new ArrayList();
+    public ArrayList<Equipo> Equipos = new ArrayList();
     
     
 }

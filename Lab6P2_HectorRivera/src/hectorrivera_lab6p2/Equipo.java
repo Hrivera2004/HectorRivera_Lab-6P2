@@ -12,8 +12,6 @@ import java.util.ArrayList;
  */
 public class Equipo {
     private String pais, nombre, estadio,cuidad;
-    private ArrayList<Jugador> Jugadores = new ArrayList<>();
-
     public Equipo() {
     }
 
@@ -74,13 +72,6 @@ public class Equipo {
         this.cuidad = cuidad;
     }
 
-    public ArrayList<Jugador> getJugadores() {
-        return Jugadores;
-    }
-
-    public void setJugadores(ArrayList<Jugador> Jugadores) {
-        this.Jugadores = Jugadores;
-    }
 
     @Override
     public String toString() {

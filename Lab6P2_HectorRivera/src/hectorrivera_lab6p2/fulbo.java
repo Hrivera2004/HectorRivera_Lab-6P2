@@ -629,7 +629,8 @@ public class fulbo extends javax.swing.JFrame {
     private void jButton_jugadores_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_jugadores_addMouseClicked
         // TODO add your handling code here:
         ArrayList<Character> array = new ArrayList();
-         String text = jTextField_jugadores_name.getText();
+        ArrayList<Character> array2 = new ArrayList();
+        String text = jTextField_jugadores_name.getText();
         
         int cont = 0;
         for (int i = 0; i < text.length(); i++) {
@@ -638,8 +639,9 @@ public class fulbo extends javax.swing.JFrame {
         for (int i = 0; i < array.size(); i++) {
             char x = array.get(i);
             if (x=='0'||x=='1'||x=='2'||x=='3'||x=='4'||x=='5'||x=='6'||x=='7'||x=='8'||x=='9') {
-                array.remove(i);
                 cont++;
+            }else{
+                array2.add(array.get(i));
             }
         }
         
@@ -649,8 +651,8 @@ public class fulbo extends javax.swing.JFrame {
         
         String name="";
         
-        for (int i = 0; i < array.size(); i++) {
-            name+=array.get(i);
+        for (int i = 0; i < array2.size(); i++) {
+            name+=array2.get(i);
         }
         Jugadores.add(new Jugador(name, jComboBox_Jugadores_posicion.getSelectedItem().toString(),(Integer)jSpinner_jugadores_edad.getValue()));
         JOptionPane.showMessageDialog(jDialog_CrearJugadores, "se creo el jugador");
@@ -678,6 +680,9 @@ public class fulbo extends javax.swing.JFrame {
         model.removeAllElements();
         model.addAll(Jugadores);
         jList1.setModel(model);
+        
+        Jugador selected= Jugadores.get(jList1.getSelectedIndex());
+        
         
     }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
 

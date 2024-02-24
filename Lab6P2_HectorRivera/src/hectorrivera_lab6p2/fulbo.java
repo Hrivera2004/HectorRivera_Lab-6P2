@@ -55,6 +55,13 @@ public class fulbo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton_CrearEquipo_add = new javax.swing.JButton();
+        jDialog_modificar = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jTextField_mod_newname = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jSpinner_new_age = new javax.swing.JSpinner();
+        jButton_change = new javax.swing.JButton();
         jDialog_Transferencia = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,9 +71,11 @@ public class fulbo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jPopupMenu_transferencia = new javax.swing.JPopupMenu();
+        jPopupMenu_transferencia_list = new javax.swing.JPopupMenu();
         jMenuItem_modificar = new javax.swing.JMenuItem();
         jMenuItem_Eliminar = new javax.swing.JMenuItem();
+        jPopupMenu_transferencia_tree = new javax.swing.JPopupMenu();
+        jMenuItem_tree_delete = new javax.swing.JMenuItem();
         jPanel_principal = new javax.swing.JPanel();
         Barcita = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
@@ -258,6 +267,62 @@ public class fulbo extends javax.swing.JFrame {
 
         jDialog_CrearEquipo.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
+        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
+
+        jLabel12.setText("New Name");
+
+        jLabel13.setText("New age");
+
+        jSpinner_new_age.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+
+        jButton_change.setText("Change");
+        jButton_change.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_changeMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jButton_change, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSpinner_new_age)
+                    .addComponent(jTextField_mod_newname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_mod_newname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner_new_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_change)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jDialog_modificarLayout = new javax.swing.GroupLayout(jDialog_modificar.getContentPane());
+        jDialog_modificar.getContentPane().setLayout(jDialog_modificarLayout);
+        jDialog_modificarLayout.setHorizontalGroup(
+            jDialog_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_modificarLayout.setVerticalGroup(
+            jDialog_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         jDialog_Transferencia.setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
@@ -266,6 +331,11 @@ public class fulbo extends javax.swing.JFrame {
         jTree_transfer_equipos.setForeground(new java.awt.Color(0, 0, 0));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("equipos");
         jTree_transfer_equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree_transfer_equipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTree_transfer_equiposMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree_transfer_equipos);
 
         jButton_transfer.setText("------>");
@@ -342,7 +412,12 @@ public class fulbo extends javax.swing.JFrame {
         );
 
         jMenuItem_modificar.setText("modificar");
-        jPopupMenu_transferencia.add(jMenuItem_modificar);
+        jMenuItem_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_modificarActionPerformed(evt);
+            }
+        });
+        jPopupMenu_transferencia_list.add(jMenuItem_modificar);
 
         jMenuItem_Eliminar.setText("Eliminar");
         jMenuItem_Eliminar.setToolTipText("");
@@ -351,7 +426,15 @@ public class fulbo extends javax.swing.JFrame {
                 jMenuItem_EliminarActionPerformed(evt);
             }
         });
-        jPopupMenu_transferencia.add(jMenuItem_Eliminar);
+        jPopupMenu_transferencia_list.add(jMenuItem_Eliminar);
+
+        jMenuItem_tree_delete.setText("Delete");
+        jMenuItem_tree_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_tree_deleteActionPerformed(evt);
+            }
+        });
+        jPopupMenu_transferencia_tree.add(jMenuItem_tree_delete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -545,7 +628,31 @@ public class fulbo extends javax.swing.JFrame {
 
     private void jButton_jugadores_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_jugadores_addMouseClicked
         // TODO add your handling code here:
-        Jugadores.add(new Jugador(jTextField_jugadores_name.getText(), jComboBox_Jugadores_posicion.getSelectedItem().toString(),(Integer)jSpinner_jugadores_edad.getValue()));
+        ArrayList<Character> array = new ArrayList();
+         String text = jTextField_jugadores_name.getText();
+        
+        int cont = 0;
+        for (int i = 0; i < text.length(); i++) {
+            array.add(text.charAt(i));
+        }
+        for (int i = 0; i < array.size(); i++) {
+            char x = array.get(i);
+            if (x=='0'||x=='1'||x=='2'||x=='3'||x=='4'||x=='5'||x=='6'||x=='7'||x=='8'||x=='9') {
+                array.remove(i);
+                cont++;
+            }
+        }
+        
+        if (cont!=0) {
+            JOptionPane.showMessageDialog(jDialog_CrearJugadores, "nombre incorrecto se a modificado");
+        }
+        
+        String name="";
+        
+        for (int i = 0; i < array.size(); i++) {
+            name+=array.get(i);
+        }
+        Jugadores.add(new Jugador(name, jComboBox_Jugadores_posicion.getSelectedItem().toString(),(Integer)jSpinner_jugadores_edad.getValue()));
         JOptionPane.showMessageDialog(jDialog_CrearJugadores, "se creo el jugador");
         jTextField_jugadores_name.setText("");
         
@@ -559,7 +666,7 @@ public class fulbo extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getButton() == MouseEvent.BUTTON3) {
             if (jList1.getSelectedIndex()!= -1) {
-                jPopupMenu_transferencia.show(jList1, evt.getX(), evt.getY());
+                jPopupMenu_transferencia_list.show(jList1, evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_jList1MouseClicked
@@ -575,20 +682,10 @@ public class fulbo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
 
     private void jButton_transferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_transferMouseClicked
-        // TODO add your handling code here:
-//        DefaultTreeModel count = (DefaultTreeModel) jTree_transfer_equipos.getModel();
-//        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)count.getRoot();
-//        int cont= 0;
-//        
-//        while(raiz.getChildCount() > cont){
-//            raiz.getChildAt(cont);
-//            while(){
-//                
-//            }
-//            cont++;
-//        }
-        DefaultMutableTreeNode nodoselecionado =  new DefaultMutableTreeNode(jTree_transfer_equipos.getSelectionPath().getLastPathComponent());
-        if ( nodoselecionado.getUserObject() instanceof Equipo ) {
+
+        Object v1 = jTree_transfer_equipos.getSelectionPath().getLastPathComponent();
+        DefaultMutableTreeNode nodoselecionado = (DefaultMutableTreeNode)v1;
+        if ( nodoselecionado.getUserObject() instanceof Equipo && (jList1.getSelectedIndex()!=-1|| jTree_transfer_equipos.getSelectionPath().getLastPathComponent() != null)) {
             int selectedlist = jList1.getSelectedIndex();
             DefaultTreeModel model = (DefaultTreeModel) jTree_transfer_equipos.getModel();
             
@@ -608,12 +705,71 @@ public class fulbo extends javax.swing.JFrame {
                 ((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent()).add(posicion);
             }
             model.reload();
-            
         }else{
-            System.out.println("_---------------");
+            JOptionPane.showMessageDialog(jDialog_Transferencia, "Error");
         }
         
     }//GEN-LAST:event_jButton_transferMouseClicked
+
+    private void jTree_transfer_equiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree_transfer_equiposMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton()==MouseEvent.BUTTON3) {
+             Object v1 = jTree_transfer_equipos.getSelectionPath().getLastPathComponent();
+            DefaultMutableTreeNode nodoselecionado = (DefaultMutableTreeNode)v1;
+            if ( nodoselecionado.getUserObject() instanceof Equipo) {
+                jPopupMenu_transferencia_tree.show(jDialog_Transferencia, evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jTree_transfer_equiposMouseClicked
+
+    private void jMenuItem_tree_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_tree_deleteActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTreeModel model = (DefaultTreeModel) jTree_transfer_equipos.getModel();
+        model.removeNodeFromParent((DefaultMutableTreeNode)jTree_transfer_equipos.getSelectionPath().getLastPathComponent());
+    }//GEN-LAST:event_jMenuItem_tree_deleteActionPerformed
+
+    private void jMenuItem_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_modificarActionPerformed
+        // TODO add your handling code here:
+        jTextField_mod_newname.setText(Jugadores.get(jList1.getSelectedIndex()).getName());
+        jSpinner_new_age.setValue((Integer)Jugadores.get(jList1.getSelectedIndex()).getEdad());
+        jDialog_modificar.pack();
+        jDialog_modificar.show(true);
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem_modificarActionPerformed
+
+    private void jButton_changeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_changeMouseClicked
+        // TODO add your handling code here:
+
+        Jugadores.get(jList1.getSelectedIndex()).setEdad((Integer)jSpinner_new_age.getValue());
+        String text = jTextField_mod_newname.getText();
+        
+        int cont = 0;
+        
+        for (int i = 0; i < text.length(); i++) {
+            char x = text.charAt(i);
+            if (x=='0'||x=='1'||x=='2'||x=='3'||x=='4'||x=='5'||x=='6'||x=='7'||x=='8'||x=='9') {
+                cont++;
+            }
+        }
+        
+        if (cont==0) {
+            Jugadores.get(jList1.getSelectedIndex()).setName(jTextField_mod_newname.getText());
+        }else{
+            JOptionPane.showMessageDialog(jDialog_modificar, "nombre incorrecto");
+        }
+        jDialog_modificar.show(false);    
+  
+        
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        model.removeAllElements();
+        model.addAll(Jugadores);
+        
+    }//GEN-LAST:event_jButton_changeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -654,6 +810,7 @@ public class fulbo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Barcita;
     private javax.swing.JButton jButton_CrearEquipo_add;
+    private javax.swing.JButton jButton_change;
     private javax.swing.JButton jButton_crearEquipo;
     private javax.swing.JButton jButton_crearJugador;
     private javax.swing.JButton jButton_jugadores_add;
@@ -663,9 +820,12 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog_CrearEquipo;
     private javax.swing.JDialog jDialog_CrearJugadores;
     private javax.swing.JDialog jDialog_Transferencia;
+    private javax.swing.JDialog jDialog_modificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -681,21 +841,26 @@ public class fulbo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_crearEquipo;
     private javax.swing.JMenuItem jMenuItem_crearJugador;
     private javax.swing.JMenuItem jMenuItem_modificar;
+    private javax.swing.JMenuItem jMenuItem_tree_delete;
     private javax.swing.JMenu jMenu_Opciones;
     private javax.swing.JMenu jMenu_ayuda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_principal;
-    private javax.swing.JPopupMenu jPopupMenu_transferencia;
+    private javax.swing.JPopupMenu jPopupMenu_transferencia_list;
+    private javax.swing.JPopupMenu jPopupMenu_transferencia_tree;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner_jugadores_edad;
+    private javax.swing.JSpinner jSpinner_new_age;
     private javax.swing.JTextField jTextField_crearEquipo_Cuidad;
     private javax.swing.JTextField jTextField_crearEquipo_pais;
     private javax.swing.JTextField jTextField_crearequipo_estadio;
     private javax.swing.JTextField jTextField_crearequipo_nombre;
     private javax.swing.JTextField jTextField_jugadores_name;
+    private javax.swing.JTextField jTextField_mod_newname;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
     private javax.swing.JTree jTree_transfer_equipos;

@@ -675,15 +675,42 @@ public class fulbo extends javax.swing.JFrame {
 
     private void jMenuItem_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EliminarActionPerformed
         // TODO add your handling code here:
+        
+        
+        Jugador selected= Jugadores.get(jList1.getSelectedIndex());
+        
+        DefaultTreeModel tree = (DefaultTreeModel) jTree_transfer_equipos.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)tree.getRoot();
+        try{
+            for (int i = 0; i < root.getChildCount(); i++) {
+                DefaultMutableTreeNode level1 = (DefaultMutableTreeNode) root.getChildAt(i);
+                for (int j = 0; j < level1.getChildCount(); j++) {
+                    DefaultMutableTreeNode level2 = (DefaultMutableTreeNode) level1.getChildAt(i);
+                    for (int k = 0; k < level2.getChildCount(); k++) {
+                        Object v1 = level2.getChildAt(i);
+                        DefaultMutableTreeNode level3 = (DefaultMutableTreeNode) v1;
+                        if (selected.getPosicion().equals(level3.getChildAt(i).toString())); {
+                            DefaultMutableTreeNode levelmaybe = (DefaultMutableTreeNode) level2.getChildAt(i);
+                            for (int l = 0; l < levelmaybe.getChildCount(); l++) {
+                                DefaultMutableTreeNode level4 = (DefaultMutableTreeNode) levelmaybe.getChildAt(i);
+                                if (selected.getName().equals(level4.toString())) {
+                                    tree.removeNodeFromParent(level4);
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        }catch (Exception e){
+            System.out.println("");
+        }
         Jugadores.remove(jList1.getSelectedIndex());
         DefaultListModel model = (DefaultListModel) jList1.getModel();
         model.removeAllElements();
         model.addAll(Jugadores);
         jList1.setModel(model);
-        
-        Jugador selected= Jugadores.get(jList1.getSelectedIndex());
-        
-        
     }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
 
     private void jButton_transferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_transferMouseClicked
@@ -718,11 +745,11 @@ public class fulbo extends javax.swing.JFrame {
 
     private void jTree_transfer_equiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree_transfer_equiposMouseClicked
         // TODO add your handling code here:
-        if (evt.getButton()==MouseEvent.BUTTON3) {
+        if (evt.getButton()==MouseEvent.BUTTON3 && jList1.getSelectedIndex()!=-1) {
              Object v1 = jTree_transfer_equipos.getSelectionPath().getLastPathComponent();
             DefaultMutableTreeNode nodoselecionado = (DefaultMutableTreeNode)v1;
             if ( nodoselecionado.getUserObject() instanceof Equipo) {
-                jPopupMenu_transferencia_tree.show(jDialog_Transferencia, evt.getX(), evt.getY());
+                jPopupMenu_transferencia_tree.show(jTree_transfer_equipos, evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_jTree_transfer_equiposMouseClicked
